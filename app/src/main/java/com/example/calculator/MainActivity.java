@@ -7,33 +7,24 @@ import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.example.calculator.polish_processing.PolishProcessor;
 
-import java.util.LinkedList;
 
-
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
     EditText str;
 
-    int operand, ost, flagAction, len, pow;
+    int operand, flagAction;
     double result;
-    float floatOst, floatOperand;
     String string;
-    LinkedList<Float> st = new LinkedList<>();
-    LinkedList<Character> op = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        str = findViewById(R.id.viewNumbers);
+        str = (EditText) findViewById(R.id.viewNumbers);
         operand = 0;
         result = 0;
         flagAction = 0;
-        floatOperand = 0;
-        pow = 1;
     }
 
     @Override
@@ -105,20 +96,21 @@ public class MainActivity extends Activity implements OnClickListener {
                 result = PolishProcessor.eval(string);
                 str.setText(Double.toString(result));
                 operand = 0;
-                floatOperand = 0;
                 result = 0;
                 flagAction = 0;
                 break;
 
             case R.id.clear:
                 operand = 0;
-                floatOperand = 0;
                 result = 0;
                 flagAction = 0;
                 str.setText(Integer.toString(operand));
                 break;
-        }
 
+            case R.id.sign:
+                str.setText("-");
+                flagAction = 1;
+        }
     }
 
     private void ClickDoubleNumber() {
@@ -140,8 +132,5 @@ public class MainActivity extends Activity implements OnClickListener {
     private void ClickOperator(int stringResourceId){
         str.append(this.getResources().getString(stringResourceId));
         operand = 0;
-        floatOperand = 0;
-        ost = 0;
-        floatOst = 0;
     }
 }

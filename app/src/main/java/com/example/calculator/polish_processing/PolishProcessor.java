@@ -26,9 +26,15 @@ public class PolishProcessor {
                 return -1;
         }
     }
-    static void processOperator(LinkedList<Float> st, char op) {
-        float r = st.removeLast();
-        float l = st.removeLast();
+    static void processOperator(LinkedList<Double> st, char op) {
+        Double r = st.removeLast();
+        Double l;
+        if (st.size() == 0){
+            l = 0.0;
+        } else {
+            l = st.removeLast();
+        }
+
         switch (op) {
             case '+':
                 st.add(l + r);
@@ -47,8 +53,8 @@ public class PolishProcessor {
                 break;
         }
     }
-    public static Float eval(String s) {
-        LinkedList<Float> st = new LinkedList<>();
+    public static Double eval(String s) {
+        LinkedList<Double> st = new LinkedList<>();
         LinkedList<Character> op = new LinkedList<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
@@ -69,7 +75,8 @@ public class PolishProcessor {
                 while (i < s.length() && Character.isDigit(s.charAt(i)) || i < s.length() && s.charAt(i) == '.' )
                     operand += s.charAt(i++);
                 --i;
-                st.add(Float.parseFloat(operand));
+                st.add(Double.parseDouble(operand));
+
             }
         }
         while (!op.isEmpty())
