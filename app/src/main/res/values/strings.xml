@@ -20,4 +20,19 @@
     <string name="sign">+/-</string>
     <string name="brackets">()</string>
     <string name="cancel">CANCEL</string>
+    <string name="factorial">x!</string>
+    <string name="root">^</string>
+    <string name="persent">%</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="ln">ln</string>
+    <string name="log">log</string>
+    <string name="oneDivX">1/x</string>
+    <string name="ePowX">e^x</string>
+    <string name="xPowTwo">x^2</string>
+    <string name="yPowX">y^x</string>
+    <string name="modul">|x|</string>
+    <string name="pi">pi</string>
+    <string name="e">e</string>
 </resources>
