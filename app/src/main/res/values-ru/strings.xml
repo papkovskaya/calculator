@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Калькулятор</string>
+    <string name="engineering">Инженерный</string>
+    <string name="simple">Обычный</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
