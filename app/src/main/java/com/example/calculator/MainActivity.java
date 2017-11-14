@@ -1,6 +1,7 @@
 package com.example.calculator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,27 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     int operand, flagAction;
     double result;
     String string;
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransitionExit();
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransitionEnter();
+    }
+
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 return true;
             case R.id.second_item:
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                return true;
+            case R.id.bin_item:
+                Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
+                startActivity(binaryActivityIntent);
                 return true;
         }
         return false;
