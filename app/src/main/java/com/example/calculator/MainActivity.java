@@ -143,6 +143,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 ClickDoubleNumber();
                 break;
 
+            case R.id.brackets:
+                
+
             case R.id.equal:
                 string = str.getText().toString();
                 result = PolishProcessor.eval(string);
@@ -162,6 +165,51 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             case R.id.sign:
                 str.setText("-");
                 flagAction = 1;
+
+            case R.id.factorial:
+                break;
+
+            case R.id.root:
+                break;
+
+            case R.id.persent:
+                break;
+
+            case R.id.sin:
+                break;
+
+            case R.id.cos:
+                break;
+
+            case R.id.tan:
+                break;
+
+            case R.id.ln:
+                break;
+
+            case R.id.log:
+                break;
+
+            case R.id.oneDivX:
+                break;
+
+            case R.id.ePowX:
+                break;
+
+            case R.id.xPowTwo:
+                break;
+
+            case R.id.yPowX:
+                break;
+
+            case R.id.modul:
+                break;
+
+            case R.id.pi:
+                break;
+
+            case R.id.e:
+                break;
         }
     }
 
