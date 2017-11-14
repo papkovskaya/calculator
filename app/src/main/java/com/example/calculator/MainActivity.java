@@ -20,9 +20,10 @@ import com.example.calculator.polish_processing.PolishProcessor;
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     EditText str;
 
-    int operand, flagAction;
-    double result;
-    String string;
+    int operand1, operand2, flagAction, doubleAction, ost;
+    double d_operand1, d_operand2;
+    double result, number, root;
+    String op, string;
 
     @Override
     public void finish() {
@@ -50,9 +51,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         str = (EditText) findViewById(R.id.viewNumbers);
-        operand = 0;
+        operand1 = 0;
+        operand2 = 0;
         result = 0;
         flagAction = 0;
+        ost = 0;
     }
 
     @Override
@@ -124,19 +127,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.plus:
-                ClickOperator(R.string.plus);
+                ClickOperator("+");
                 break;
 
             case R.id.minus:
-                ClickOperator(R.string.minus);
+                ClickOperator("-");
                 break;
 
             case R.id.multiply:
-                ClickOperator(R.string.multiply);
+                ClickOperator("*");
                 break;
 
             case R.id.divide:
-                ClickOperator(R.string.divide);
+                ClickOperator("/");
                 break;
 
             case R.id.dot:
@@ -144,22 +147,34 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.brackets:
-                
+
 
             case R.id.equal:
-                string = str.getText().toString();
-                result = PolishProcessor.eval(string);
+                if(doubleAction == 1){
+                    d_operand1 = operand1 + ost / Math.pow(10, Math.floor(Math.log10(ost) + 1));
+                    d_operand2 = operand2 + ost / Math.pow(10, Math.floor(Math.log10(ost) + 1));
+                } else{
+                    d_operand1 = operand1;
+                    d_operand2 = operand2;
+                }
+                Start(d_operand1, d_operand2, op);
                 str.setText(Double.toString(result));
-                operand = 0;
+                operand1 = 0;
+                operand2 = 0;
                 result = 0;
                 flagAction = 0;
+                doubleAction = 0;
+                ost = 0;
                 break;
 
             case R.id.clear:
-                operand = 0;
+                operand1 = 0;
+                operand2 = 0;
                 result = 0;
                 flagAction = 0;
-                str.setText(Integer.toString(operand));
+                doubleAction = 0;
+                str.setText(Integer.toString(operand1));
+                ost = 0;
                 break;
 
             case R.id.sign:
@@ -167,9 +182,27 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 flagAction = 1;
 
             case R.id.factorial:
+                number = Float.parseFloat(str.getText().toString());
+                result = 1;
+                for (int i = 1; i < number; i++){
+                    result += result*i;
+                }
+                str.setText(Double.toString(result));
+                operand1 = 0;
+                operand2 = 0;
+                result = 0;
+                flagAction = 0;
+                doubleAction = 0;
+                ost = 0;
                 break;
 
             case R.id.root:
+                number = Float.parseFloat(str.getText().toString());
+                str.setText("");
+                if (str)
+                string = str.getText().toString();
+                root =
+                Math.pow( number, 1.0 / i);
                 break;
 
             case R.id.persent:
@@ -215,22 +248,53 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     private void ClickDoubleNumber() {
         str.append(".");
+        doubleAction = 1;
+    }
+
+    private void Start(double op1, double op2, String op){
+        switch (op){
+            case "+":
+                result = op1 + op2;
+                break;
+
+            case "-":
+                result = op1 - op2;
+                break;
+
+            case "*":
+                result = op1 * op2;
+                break;
+
+            case "/":
+                result = op1 / op2;
+                break;
+        }
     }
 
 
     private void ClickNumber(int num){
         if(flagAction == 0){
-            operand = operand*10 + num;
-            str.setText(Integer.toString(num));
-            flagAction = 1;
+            if(doubleAction == 1){
+                ost += num;
+                str.append(Integer.toString(num));
+            }else {
+                operand1 = operand1*10 + num;
+                str.append(Integer.toString(num));
+            }
         }else if (flagAction == 1){
-            operand = operand*10 + num;
-            str.append(Integer.toString(num));
+            if(doubleAction == 1){
+                ost += num;
+                str.append(Integer.toString(num));
+            }else {
+                operand2 = operand2*10 + num;
+                str.append(Integer.toString(num));
+            }
         }
     }
 
-    private void ClickOperator(int stringResourceId){
-        str.append(this.getResources().getString(stringResourceId));
-        operand = 0;
+    private void ClickOperator(String operator){
+        str.append(operator);
+        op = operator;
+        flagAction = 1;
     }
 }
