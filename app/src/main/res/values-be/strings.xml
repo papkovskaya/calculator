@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Калькулятар</string>
     <string name="engineering">Iнжынерны</string>
+    <string name="programming">Праграмiсцкi</string>
     <string name="simple">Звычайны</string>
     <string name="one">1</string>
     <string name="two">2</string>

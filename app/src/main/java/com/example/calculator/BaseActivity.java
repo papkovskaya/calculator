@@ -1,14 +1,17 @@
 package com.example.calculator;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.calculator.polish_processing.PolishProcessor;
@@ -17,7 +20,7 @@ import com.example.calculator.polish_processing.PolishProcessor;
  * Created by olga on 04.12.2017.
  */
 
-public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public class BaseActivity extends AppCompatActivity implements View.OnClickListener, TabLayout.OnTabSelectedListener {
     String string;
     EditText str;
     int operand, flagAction;
@@ -69,6 +72,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             case R.id.bin_item:
                 Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
+                binaryActivityIntent.putExtra("expression", str.getText().toString());
+                binaryActivityIntent.putExtra("operand", operand);
+                binaryActivityIntent.putExtra("result", result);
+                binaryActivityIntent.putExtra("flagAction", flagAction);
                 startActivity(binaryActivityIntent);
                 return true;
         }
@@ -238,5 +245,45 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         str.append(this.getResources().getString(stringResourceId));
         operand = 0;
         flagAction = 1;
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        switch (tab.getPosition()){
+            case 0:
+                Intent simpleActivityIntent = new Intent(this, MainActivity.class);
+                simpleActivityIntent.putExtra("expression", str.getText().toString());
+                simpleActivityIntent.putExtra("operand", operand);
+                simpleActivityIntent.putExtra("result", result);
+                simpleActivityIntent.putExtra("flagAction", flagAction);
+                startActivity(simpleActivityIntent);
+                break;
+            case 1:
+                Intent engineeringActivityIntent = new Intent(this, EngineeringActivity.class);
+                engineeringActivityIntent.putExtra("expression", str.getText().toString());
+                engineeringActivityIntent.putExtra("operand", operand);
+                engineeringActivityIntent.putExtra("result", result);
+                engineeringActivityIntent.putExtra("flagAction", flagAction);
+                startActivity(engineeringActivityIntent);
+                break;
+            case 2:
+                Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
+                binaryActivityIntent.putExtra("expression", str.getText().toString());
+                binaryActivityIntent.putExtra("operand", operand);
+                binaryActivityIntent.putExtra("result", result);
+                binaryActivityIntent.putExtra("flagAction", flagAction);
+                startActivity(binaryActivityIntent);
+                break;
+        }
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }
