@@ -15,7 +15,7 @@ public class EngineeringActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_engineering);
         TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.addOnTabSelectedListener(this);
+        //tabLayout.addOnTabSelectedListener(this);
         str = (EditText) findViewById(R.id.viewNumbers);
         if(savedInstanceState != null){
             str.setText(savedInstanceState.getString("expression", ""));

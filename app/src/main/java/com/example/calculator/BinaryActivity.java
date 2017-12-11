@@ -12,7 +12,7 @@ public class BinaryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_binary);
         TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.addOnTabSelectedListener(this);
+        //tabLayout.addOnTabSelectedListener(this);
         str = (EditText) findViewById(R.id.viewNumbers);
         if(savedInstanceState != null){
             str.setText(savedInstanceState.getString("expression", ""));
