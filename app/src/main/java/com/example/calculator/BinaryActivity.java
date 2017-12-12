@@ -124,7 +124,7 @@ public class BinaryActivity extends BaseActivity {
         BIN
     }
 
-    Mode mActiveMode = Mode.DEC;
+    Mode mActiveMode;
 
     char operation;
     String number;
@@ -145,19 +145,25 @@ public class BinaryActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.HEX:
                 enableAllControls();
-                transitionToHex(mActiveMode);
+                if (mActiveMode != null){
+                    transitionToHex(mActiveMode);
+                }
                 mActiveMode = Mode.HEX;
                 break;
             case R.id.DEC:
                 enableAllControls();
-                transitionToDec(mActiveMode);
+                if (mActiveMode != null) {
+                    transitionToDec(mActiveMode);
+                }
                 mActiveMode = Mode.DEC;
                 for (int element : decDisabledControls){
                     findViewById(element).setEnabled(false);
                 }
                 break;
             case R.id.BIN:
-                transitionToBin(mActiveMode);
+                if (mActiveMode != null) {
+                    transitionToBin(mActiveMode);
+                }
                 mActiveMode = Mode.BIN;
                 for (int element : binaryDisabledControls){
                     Button button = findViewById(element);
@@ -217,33 +223,23 @@ public class BinaryActivity extends BaseActivity {
     }
 
     private void transitionToBin(Mode oldMode){
-        switch (oldMode){
-            case HEX:
-                if (str.getText().toString() != "") {
+            switch (oldMode) {
+                case HEX:
                     str.setText(HexToBin(str.getText().toString()));
-                }
-                break;
-            case DEC:
-                if (str.getText().toString() != "") {
+                    break;
+                case DEC:
                     str.setText(DecToBin(str.getText().toString()));
-                }
-                break;
-        }
+                    break;
+            }
 
     }
 
     private void transitionToHex(Mode oldMode){
         switch (oldMode){
             case BIN:
-                if (str.getText().toString() != "") {
-                    str.setText(BinToHex(str.getText().toString()));
-                }
-                break;
+                str.setText(BinToHex(str.getText().toString()));
             case DEC:
-                if (str.getText().toString() != "") {
-                    str.setText(DecToHex(str.getText().toString()));
-                }
-                break;
+                str.setText(DecToHex(str.getText().toString()));
         }
 
     }
@@ -251,15 +247,9 @@ public class BinaryActivity extends BaseActivity {
     private void transitionToDec(Mode oldMode){
         switch (oldMode){
             case HEX:
-                if (str.getText().toString() != ""){
-                    str.setText(HexToDec(str.getText().toString()));
-                }
-                break;
+                str.setText(HexToDec(str.getText().toString()));
             case BIN:
-                if (str.getText().toString() != "") {
-                    str.setText(BinToDec(str.getText().toString()));
-                }
-                break;
+                str.setText(BinToDec(str.getText().toString()));
         }
 
     }
@@ -279,6 +269,7 @@ public class BinaryActivity extends BaseActivity {
     private String BinToHex(String string){
         int decimal = Integer.parseInt(string,2);
         return Integer.toString(decimal,16);
+
     }
 
     private String HexToBin(String string){
