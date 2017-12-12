@@ -11,7 +11,7 @@ public class PolishProcessor {
         return c == ' ';
     }
     static boolean isOperator(char c) {
-        return c == '+' || c == '-' || c == '*' || c == '/' || c == '%';
+        return c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '^';
     }
     static int priority(char op) {
         switch (op) {
@@ -22,6 +22,8 @@ public class PolishProcessor {
             case '/':
             case '%':
                 return 2;
+            case '^':
+                return 3;
             default:
                 return -1;
         }
@@ -51,8 +53,12 @@ public class PolishProcessor {
             case '%':
                 st.add(l % r);
                 break;
+            case '^':
+                st.add(Math.pow(l,r));
+                break;
         }
     }
+
     public static Double eval(String s) {
         LinkedList<Double> st = new LinkedList<>();
         LinkedList<Character> op = new LinkedList<>();

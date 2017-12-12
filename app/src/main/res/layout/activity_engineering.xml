@@ -24,7 +24,10 @@ android:id="@+id/land">
             android:layout_height="wrap_content"
             android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_span="7"/>
+            android:layout_span="7"
+            android:inputType="none"
+            android:cursorVisible="false"
+            android:focusableInTouchMode="false"/>
     </TableRow>
     <TableRow
         android:layout_height="match_parent"

@@ -67,10 +67,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 simpleActivityIntent.putExtra("flagAction", flagAction);
                 startActivity(simpleActivityIntent);
                 return true;
-            case R.id.bin_item:
-                Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
-                startActivity(binaryActivityIntent);
-                return true;
+//            case R.id.bin_item:
+//                Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
+//                startActivity(binaryActivityIntent);
+//                return true;
         }
         return false;
     }
@@ -125,6 +125,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.zero:
+                if(str.getText().toString().equalsIgnoreCase("0"))
+                    return;
                 ClickNumber(0);
                 break;
 
@@ -149,6 +151,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.brackets:
+                break;
 
 
             case R.id.equal:
@@ -170,56 +173,120 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.sign:
                 str.setText("-");
                 flagAction = 1;
+                break;
 
             case R.id.factorial:
+                result = 1;
+                for (int i = 1; i <= operand; i++){
+                    result = result * i;
+                }
+                str.setText(Double.toString(result));
+                result = 0;
+                operand = 0;
+                flagAction = 0;
                 break;
 
             case R.id.root:
+                result = Math.sqrt(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                operand = 0;
+                flagAction = 0;
                 break;
 
             case R.id.persent:
                 break;
 
             case R.id.sin:
+                result = Math.sin(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                operand = 0;
+                flagAction = 0;
                 break;
 
             case R.id.cos:
+                result = Math.cos(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.tan:
+                result = Math.tan(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.ln:
+                result = Math.log10(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.log:
+                result = Math.log(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.oneDivX:
+                result = 1 / operand;
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.ePowX:
+                result = Math.exp(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.xPowTwo:
+                result = Math.pow(operand, 2);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.yPowX:
+                ClickOperator(R.string.pow);
+                operand = 0;
                 break;
 
             case R.id.modul:
+                result = Math.abs(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.pi:
+                AddDouble(Math.PI);
                 break;
 
             case R.id.e:
+                AddDouble(Math.E);
                 break;
         }
     }
 
     void ClickDoubleNumber() {
         str.append(".");
+        flagAction = 1;
     }
 
 
@@ -234,9 +301,24 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    void AddDouble(double num){
+        if(flagAction == 0){
+            str.setText(Double.toString(num));
+            flagAction = 1;
+        }else if (flagAction == 1){
+            str.append(Double.toString(num));
+        }
+    }
+
     void ClickOperator(int stringResourceId){
         str.append(this.getResources().getString(stringResourceId));
         operand = 0;
         flagAction = 1;
     }
+
+//    void ClickUnarOperator(int stringResourceId, String op){
+//        str.append(this.getResources().getString(stringResourceId)+"("+op+")");
+//        operand = 0;
+//        flagAction = 1;
+//    }
 }

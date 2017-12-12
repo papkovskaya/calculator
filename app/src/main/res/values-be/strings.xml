@@ -23,7 +23,7 @@
     <string name="brackets">()</string>
     <string name="cancel">CANCEL</string>
     <string name="factorial">x!</string>
-    <string name="root">^</string>
+    <string name="root">√</string>
     <string name="persent">%</string>
     <string name="sin">sin</string>
     <string name="cos">cos</string>
@@ -37,4 +37,5 @@
     <string name="modul">|x|</string>
     <string name="pi">pi</string>
     <string name="e">e</string>
+    <string name="pow">^</string>
 </resources>

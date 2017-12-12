@@ -5,8 +5,8 @@
         android:title="@string/engineering"
         app:showAsAction="never"
         android:id="@+id/first_item" />
-    <item
-        android:title="Programming"
-        app:showAsAction="never"
-        android:id="@+id/bin_item"/>
+    <!--<item-->
+        <!--android:title="Programming"-->
+        <!--app:showAsAction="never"-->
+        <!--android:id="@+id/bin_item"/>-->
 </menu>
