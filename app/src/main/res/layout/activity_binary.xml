@@ -124,10 +124,21 @@
                     android:id="@+id/not"
                     android:text="@string/not"
                     android:onClick="onClick"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/and"
+                    android:text="@string/and"
+                    android:onClick="onClick"/>
+                <Button
+                    android:visibility="invisible"/>
                 <Button android:visibility="invisible" />
-                <Button android:visibility="invisible" />
-                <Button android:visibility="invisible" />
-                <Button android:visibility="invisible" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/clear"
+                    android:text="@string/clear"
+                    android:onClick="onClick"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -153,20 +164,20 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/and"
-                    android:text="@string/and"
+                    android:id="@+id/seven"
+                    android:text="@string/seven"
                     android:onClick="onClick"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/clear"
-                    android:text="@string/clear"
+                    android:id="@+id/eight"
+                    android:text="@string/eight"
                     android:onClick="onClick"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/cancel"
-                    android:text="@string/cancel"
+                    android:id="@+id/nine"
+                    android:text="@string/nine"
                     android:onClick="onClick"/>
                 <Button
                     android:layout_width="wrap_content"
