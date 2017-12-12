@@ -46,7 +46,11 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_span="7"/>
+                    android:layout_span="7"
+                    android:onClick="onClickMode"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"/>
                 <TextView
                     android:text="@string/DEC"/>
                 <EditText
@@ -55,7 +59,11 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_span="7"/>
+                    android:layout_span="7"
+                    android:onClick="onClickMode"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"/>
             </TableRow>
             <TableRow>
                 <TextView
@@ -66,7 +74,11 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_span="7"/>
+                    android:layout_span="7"
+                    android:onClick="onClickMode"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"/>
                 <TextView
                     android:text="@string/BIN"/>
                 <EditText
@@ -75,7 +87,11 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_span="7"/>
+                    android:layout_span="7"
+                    android:onClick="onClickMode"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"/>
             </TableRow>
         </TableLayout>
 
@@ -87,7 +103,10 @@
                 android:layout_height="wrap_content"
                 android:layout_span="7"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:inputType="none"
+                android:cursorVisible="false"
+                android:focusableInTouchMode="false"/>
         </TableRow>
 
         <TableLayout
@@ -105,10 +124,10 @@
                     android:id="@+id/not"
                     android:text="@string/not"
                     android:onClick="onClick"/>
-                <Button />
-                <Button />
-                <Button />
-                <Button />
+                <Button android:visibility="invisible" />
+                <Button android:visibility="invisible" />
+                <Button android:visibility="invisible" />
+                <Button android:visibility="invisible" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -226,7 +245,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/factorial"
+                    android:id="@+id/three"
                     android:text="@string/three"
                     android:onClick="onClick"/>
                 <Button
@@ -268,7 +287,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/dot"
                     android:text="@string/dot"
-                    android:onClick="onClick"/>
+                    android:onClick="onClick"
+                    android:enabled="false"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
