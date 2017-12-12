@@ -11,6 +11,9 @@ import android.widget.Toast;
 public class BinaryActivity extends BaseActivity {
 
     public void onClick(View view) {
+        EditText DecEditText = (EditText) findViewById(R.id.DEC);
+        EditText HexEditText = (EditText) findViewById(R.id.HEX);
+        EditText BinEditText = (EditText) findViewById(R.id.BIN);
         switch (view.getId()){
             case R.id.zero:
                 AddNumber(0);
@@ -85,14 +88,32 @@ public class BinaryActivity extends BaseActivity {
                 AddOperator('/');
                 break;
             case R.id.clear:
-                EditText DecEditText = (EditText) findViewById(R.id.DEC);
-                EditText HexEditText = (EditText) findViewById(R.id.HEX);
-                EditText BinEditText = (EditText) findViewById(R.id.BIN);
                 str.setText("");
                 DecEditText.setText("");
                 HexEditText.setText("");
                 BinEditText.setText("");
             case R.id.equal:
+                int dec = Calculate(number, operation);
+                switch (mActiveMode){
+                    case HEX:
+                        str.setText(DecToHex(Integer.toString(dec)));
+                        HexEditText.setText(DecToHex(Integer.toString(dec)));
+                        BinEditText.setText(DecToBin(Integer.toString(dec)));
+                        DecEditText.setText(Integer.toString(dec));
+                        break;
+                    case DEC:
+                        str.setText(Integer.toString(dec));
+                        DecEditText.setText(Integer.toString(dec));
+                        BinEditText.setText(DecToBin(Integer.toString(dec)));
+                        HexEditText.setText(DecToHex(Integer.toString(dec)));
+                        break;
+                    case BIN:
+                        str.setText(DecToBin(Integer.toString(dec)));
+                        BinEditText.setText(DecToBin(Integer.toString(dec)));
+                        DecEditText.setText(Integer.toString(dec));
+                        HexEditText.setText(DecToHex(Integer.toString(dec)));
+                        break;
+                }
                 break;
         }
     }
@@ -267,6 +288,43 @@ public class BinaryActivity extends BaseActivity {
 
     private String HexToDec(String string){
         return Integer.toString(Integer.parseInt(string, 16));
+    }
+
+    private int Calculate (String number, char operation){
+        switch (operation){
+            case '&':
+                return ConvertToDec(str.getText().toString()) & ConvertToDec(number);
+            case '|':
+                return ConvertToDec(str.getText().toString()) | ConvertToDec(number);
+            case '^':
+                return ConvertToDec(str.getText().toString()) ^ ConvertToDec(number);
+            case '!':
+                return ~ConvertToDec(str.getText().toString());
+            case '+':
+                return ConvertToDec(str.getText().toString()) + ConvertToDec(number);
+            case '-':
+                return ConvertToDec(str.getText().toString()) - ConvertToDec(number);
+            case '*':
+                return ConvertToDec(str.getText().toString()) * ConvertToDec(number);
+            case '/':
+                return ConvertToDec(str.getText().toString()) / ConvertToDec(number);
+        }
+        return -1;
+    }
+
+    private int ConvertToDec(String number){
+        EditText DecEditText = (EditText) findViewById(R.id.DEC);
+        EditText HexEditText = (EditText) findViewById(R.id.HEX);
+        EditText BinEditText = (EditText) findViewById(R.id.BIN);
+        switch (mActiveMode) {
+            case HEX:
+                return Integer.parseInt(HexToDec(number));
+            case DEC:
+                return Integer.parseInt(number);
+            case BIN:
+                return Integer.parseInt(BinToDec(number));
+        }
+        return -1;
     }
 
     private void enableAllControls(){
