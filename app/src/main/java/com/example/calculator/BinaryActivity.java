@@ -88,10 +88,11 @@ public class BinaryActivity extends BaseActivity {
                 AddOperator('/');
                 break;
             case R.id.clear:
-                str.setText("");
-                DecEditText.setText("");
-                HexEditText.setText("");
-                BinEditText.setText("");
+                str.setText("0");
+                DecEditText.setText("0");
+                HexEditText.setText("0");
+                BinEditText.setText("0");
+                break;
             case R.id.equal:
                 int dec = Calculate(number, operation);
                 switch (mActiveMode){
@@ -169,7 +170,7 @@ public class BinaryActivity extends BaseActivity {
 
     private void AddNumber(int number){
         String viewNumbers = str.getText().toString();
-        if (viewNumbers.matches("")) {
+        if (viewNumbers.matches("0")) {
             str.setText(Integer.toString(number));
         } else {
             str.append(Integer.toString(number));
