@@ -25,22 +25,31 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     EditText str;
     int operand, flagAction;
     double result;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        tabLayout = findViewById(R.id.tabs);
+        str = (EditText) findViewById(R.id.viewNumbers);
+
         if(savedInstanceState != null){
             operand = savedInstanceState.getInt("operand", 0);
             result = savedInstanceState.getDouble("result", 0);
             flagAction = savedInstanceState.getInt("flagAction", 0);
+            str.setText(savedInstanceState.getString("expression", ""));
         }
 
         if(getIntent() != null && getIntent().getExtras() != null){
             operand = getIntent().getIntExtra("operand", 0);
             result = getIntent().getDoubleExtra("result", 0);
             flagAction = getIntent().getIntExtra("flagAction", 0);
+            str.setText(getIntent().getStringExtra("expression"));
+            TabLayout.Tab currentTab = tabLayout.getTabAt(getIntent().getIntExtra("currentTab", 0));
+            currentTab.select();
         }
+        tabLayout.addOnTabSelectedListener(this);
     }
 
     @Override
@@ -60,6 +69,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 engineeringActivityIntent.putExtra("operand", operand);
                 engineeringActivityIntent.putExtra("result", result);
                 engineeringActivityIntent.putExtra("flagAction", flagAction);
+                engineeringActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
                 startActivity(engineeringActivityIntent);
                 return true;
             case R.id.second_item:
@@ -68,6 +78,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 simpleActivityIntent.putExtra("operand", operand);
                 simpleActivityIntent.putExtra("result", result);
                 simpleActivityIntent.putExtra("flagAction", flagAction);
+                simpleActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
                 startActivity(simpleActivityIntent);
                 return true;
             case R.id.bin_item:
@@ -76,6 +87,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 binaryActivityIntent.putExtra("operand", operand);
                 binaryActivityIntent.putExtra("result", result);
                 binaryActivityIntent.putExtra("flagAction", flagAction);
+                binaryActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
                 startActivity(binaryActivityIntent);
                 return true;
         }
@@ -256,6 +268,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 simpleActivityIntent.putExtra("operand", operand);
                 simpleActivityIntent.putExtra("result", result);
                 simpleActivityIntent.putExtra("flagAction", flagAction);
+                simpleActivityIntent.putExtra("currentTab", tab.getPosition());
                 startActivity(simpleActivityIntent);
                 break;
             case 1:
@@ -264,6 +277,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 engineeringActivityIntent.putExtra("operand", operand);
                 engineeringActivityIntent.putExtra("result", result);
                 engineeringActivityIntent.putExtra("flagAction", flagAction);
+                engineeringActivityIntent.putExtra("currentTab", tab.getPosition());
                 startActivity(engineeringActivityIntent);
                 break;
             case 2:
@@ -272,6 +286,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 binaryActivityIntent.putExtra("operand", operand);
                 binaryActivityIntent.putExtra("result", result);
                 binaryActivityIntent.putExtra("flagAction", flagAction);
+                binaryActivityIntent.putExtra("currentTab", tab.getPosition());
                 startActivity(binaryActivityIntent);
                 break;
         }
