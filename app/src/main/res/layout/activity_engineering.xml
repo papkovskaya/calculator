@@ -63,11 +63,11 @@
                 android:text="@string/factorial" />
 
             <Button
-                android:id="@+id/root"
+                android:id="@+id/pow"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:onClick="onClick"
-                android:text="@string/root" />
+                android:text="@string/pow" />
 
             <Button
                 android:id="@+id/persent"

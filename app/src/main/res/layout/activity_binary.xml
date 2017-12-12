@@ -67,19 +67,6 @@
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="@string/OCT"/>
-                <EditText
-                    android:id="@+id/OCT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_span="7"
-                    android:onClick="onClickMode"
-                    android:inputType="none"
-                    android:cursorVisible="false"
-                    android:focusableInTouchMode="false"/>
-                <TextView
                     android:text="@string/BIN"/>
                 <EditText
                     android:id="@+id/BIN"
@@ -91,7 +78,7 @@
                     android:onClick="onClickMode"
                     android:inputType="none"
                     android:cursorVisible="false"
-                    android:focusableInTouchMode="false"/>
+                    android:focusableInTouchMode="false" />
             </TableRow>
         </TableLayout>
 
