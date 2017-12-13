@@ -61,35 +61,26 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        Intent targetActivityIntent = null;
+        switch (item.getItemId()){
             case R.id.first_item:
-                //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                Intent engineeringActivityIntent = new Intent(this, EngineeringActivity.class);
-                engineeringActivityIntent.putExtra("expression", str.getText().toString());
-                engineeringActivityIntent.putExtra("operand", operand);
-                engineeringActivityIntent.putExtra("result", result);
-                engineeringActivityIntent.putExtra("flagAction", flagAction);
-                engineeringActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
-                startActivity(engineeringActivityIntent);
-                return true;
+                targetActivityIntent = new Intent(this, MainActivity.class);
+                break;
             case R.id.second_item:
-                Intent simpleActivityIntent = new Intent(this, MainActivity.class);
-                simpleActivityIntent.putExtra("expression", str.getText().toString());
-                simpleActivityIntent.putExtra("operand", operand);
-                simpleActivityIntent.putExtra("result", result);
-                simpleActivityIntent.putExtra("flagAction", flagAction);
-                simpleActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
-                startActivity(simpleActivityIntent);
-                return true;
+                targetActivityIntent = new Intent(this, EngineeringActivity.class);
+                break;
             case R.id.bin_item:
-                Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
-                binaryActivityIntent.putExtra("expression", str.getText().toString());
-                binaryActivityIntent.putExtra("operand", operand);
-                binaryActivityIntent.putExtra("result", result);
-                binaryActivityIntent.putExtra("flagAction", flagAction);
-                binaryActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
-                startActivity(binaryActivityIntent);
-                return true;
+                targetActivityIntent = new Intent(this, BinaryActivity.class);
+                break;
+        }
+        targetActivityIntent.putExtra("expression", str.getText().toString());
+        targetActivityIntent.putExtra("operand", operand);
+        targetActivityIntent.putExtra("result", result);
+        targetActivityIntent.putExtra("flagAction", flagAction);
+        targetActivityIntent.putExtra("currentTab", tabLayout.getSelectedTabPosition());
+        if(targetActivityIntent != null){
+            startActivity(targetActivityIntent);
+            return true;
         }
         return false;
     }
@@ -171,7 +162,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.brackets:
                 break;
-
 
             case R.id.equal:
                 string = str.getText().toString();
@@ -334,34 +324,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+        Intent targetActivityIntent = null;
         switch (tab.getPosition()){
             case 0:
-                Intent simpleActivityIntent = new Intent(this, MainActivity.class);
-                simpleActivityIntent.putExtra("expression", str.getText().toString());
-                simpleActivityIntent.putExtra("operand", operand);
-                simpleActivityIntent.putExtra("result", result);
-                simpleActivityIntent.putExtra("flagAction", flagAction);
-                simpleActivityIntent.putExtra("currentTab", tab.getPosition());
-                startActivity(simpleActivityIntent);
+                targetActivityIntent = new Intent(this, MainActivity.class);
                 break;
             case 1:
-                Intent engineeringActivityIntent = new Intent(this, EngineeringActivity.class);
-                engineeringActivityIntent.putExtra("expression", str.getText().toString());
-                engineeringActivityIntent.putExtra("operand", operand);
-                engineeringActivityIntent.putExtra("result", result);
-                engineeringActivityIntent.putExtra("flagAction", flagAction);
-                engineeringActivityIntent.putExtra("currentTab", tab.getPosition());
-                startActivity(engineeringActivityIntent);
+                targetActivityIntent = new Intent(this, EngineeringActivity.class);
                 break;
             case 2:
-                Intent binaryActivityIntent = new Intent(this, BinaryActivity.class);
-                binaryActivityIntent.putExtra("expression", str.getText().toString());
-                binaryActivityIntent.putExtra("operand", operand);
-                binaryActivityIntent.putExtra("result", result);
-                binaryActivityIntent.putExtra("flagAction", flagAction);
-                binaryActivityIntent.putExtra("currentTab", tab.getPosition());
-                startActivity(binaryActivityIntent);
+                targetActivityIntent = new Intent(this, BinaryActivity.class);
                 break;
+        }
+        targetActivityIntent.putExtra("expression", str.getText().toString());
+        targetActivityIntent.putExtra("operand", operand);
+        targetActivityIntent.putExtra("result", result);
+        targetActivityIntent.putExtra("flagAction", flagAction);
+        targetActivityIntent.putExtra("currentTab", tab.getPosition());
+        if(targetActivityIntent != null){
+            startActivity(targetActivityIntent);
         }
     }
 
