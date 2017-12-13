@@ -24,7 +24,7 @@
     <string name="brackets">()</string>
     <string name="cancel">DEL</string>
     <string name="factorial">x!</string>
-    <string name="root">^</string>
+    <string name="pow">^</string>
     <string name="persent">%</string>
     <string name="sin">sin</string>
     <string name="cos">cos</string>

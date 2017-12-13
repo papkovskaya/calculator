@@ -24,7 +24,7 @@
     <string name="brackets">()</string>
     <string name="cancel">CANCEL</string>
     <string name="factorial">x!</string>
-    <string name="root">^</string>
+    <string name="pow">^</string>
     <string name="persent">%</string>
     <string name="sin">sin</string>
     <string name="cos">cos</string>
@@ -38,4 +38,19 @@
     <string name="modul">|x|</string>
     <string name="pi">pi</string>
     <string name="e">e</string>
+    <string name="F">F</string>
+    <string name="E">E</string>
+    <string name="D">D</string>
+    <string name="C">C</string>
+    <string name="B">B</string>
+    <string name="A">A</string>
+    <string name="and">and</string>
+    <string name="or">or</string>
+    <string name="xor">xor</string>
+    <string name="not">not</string>
+    <string name="DEC">DEC</string>
+    <string name="HEX">HEX</string>
+    <string name="OCT">OCT</string>
+    <string name="BIN">BIN</string>
+
 </resources>
