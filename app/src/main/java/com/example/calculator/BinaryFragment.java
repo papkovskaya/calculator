@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,26 +16,15 @@ public class BinaryFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private static BinaryFragment mInstance;
-
     public BinaryFragment() {
         // Required empty public constructor
     }
-
-    public static BinaryFragment newInstance() {
-        if(mInstance != null)
-            return mInstance;
-        BinaryFragment fragment = new BinaryFragment();
-        return fragment;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        return inflater.inflate(R.layout.fragment_engineering, container, false);
+        return inflater.inflate(R.layout.fragment_binary, container, false);
     }
 
     @Override
@@ -43,8 +33,8 @@ public class BinaryFragment extends BaseFragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
         }
     }
 

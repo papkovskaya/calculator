@@ -12,9 +12,9 @@ import android.view.ViewGroup;
  * Created by inkvi on 07.12.2017.
  */
 
-public class TabsPagerAdapter extends FragmentStatePagerAdapter {
+public class TabsPagerAdapter extends FragmentPagerAdapter {
     private Context mContext;
-    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
+
     public TabsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         mContext = context;
@@ -24,31 +24,14 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return SimpleFragment.newInstance();
+                return new SimpleFragment();
             case 1:
-                return EngineeringFragment.newInstance();
+                return new EngineeringFragment();
             case 2:
-                return BinaryFragment.newInstance();
+                return new BinaryFragment();
             default:
                 return null;
         }
-    }
-
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        Fragment fragment = (Fragment) super.instantiateItem(container, position);
-        registeredFragments.put(position, fragment);
-        return fragment;
-    }
-
-    public Fragment getRegisteredFragment(int position) {
-        return registeredFragments.get(position);
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        registeredFragments.remove(position);
-        super.destroyItem(container, position, object);
     }
 
     @Override

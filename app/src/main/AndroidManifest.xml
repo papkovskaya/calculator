@@ -11,19 +11,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BinaryActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EngineeringActivity"
-                  android:screenOrientation="landscape"
-                  android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.example.calculator;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,10 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
+
+
     @Override
     public void onClick(View v) {
-
         switch(v.getId()){
             case R.id.one:
                 ClickNumber(1);
@@ -66,6 +68,8 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.zero:
+                if(str.getText().toString().equalsIgnoreCase("0"))
+                    return;
                 ClickNumber(0);
                 break;
 
@@ -90,7 +94,7 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.brackets:
-
+                break;
 
             case R.id.equal:
                 string = str.getText().toString();
@@ -111,56 +115,117 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
             case R.id.sign:
                 str.setText("-");
                 flagAction = 1;
+                break;
 
             case R.id.factorial:
+                result = 1;
+                for (int i = 1; i <= operand; i++){
+                    result = result * i;
+                }
+                str.setText(Double.toString(result));
+                result = 0;
+                operand = 0;
+                flagAction = 0;
                 break;
 
-            case R.id.root:
-                break;
-
-            case R.id.persent:
+            case R.id.pow:
+                result = Math.sqrt(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                operand = 0;
+                flagAction = 0;
                 break;
 
             case R.id.sin:
+                result = Math.sin(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                operand = 0;
+                flagAction = 0;
                 break;
 
             case R.id.cos:
+                result = Math.cos(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.tan:
+                result = Math.tan(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.ln:
+                result = Math.log10(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.log:
+                result = Math.log(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.oneDivX:
+                result = 1 / operand;
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.ePowX:
+                result = Math.exp(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.xPowTwo:
+                result = Math.pow(operand, 2);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.yPowX:
+                ClickOperator(R.string.pow);
+                operand = 0;
                 break;
 
             case R.id.modul:
+                result = Math.abs(operand);
+                str.setText(Double.toString(result));
+                result = 0;
+                flagAction = 0;
+                operand = 0;
                 break;
 
             case R.id.pi:
+                AddDouble(Math.PI);
                 break;
 
             case R.id.e:
+                AddDouble(Math.E);
                 break;
         }
     }
 
     void ClickDoubleNumber() {
         str.append(".");
+        flagAction = 1;
     }
 
 
@@ -175,9 +240,39 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    void AddDouble(double num){
+        if(flagAction == 0){
+            str.setText(Double.toString(num));
+            flagAction = 1;
+        }else if (flagAction == 1){
+            str.append(Double.toString(num));
+        }
+    }
+
     void ClickOperator(int stringResourceId){
         str.append(this.getResources().getString(stringResourceId));
         operand = 0;
         flagAction = 1;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("expression", str.getText().toString());
+        outState.putInt("operand", operand);
+        outState.putDouble("result", result);
+        outState.putInt("flagAction", flagAction);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(savedInstanceState != null){
+            operand = savedInstanceState.getInt("operand", 0);
+            result = savedInstanceState.getDouble("result", 0);
+            flagAction = savedInstanceState.getInt("flagAction", 0);
+            str.setText(savedInstanceState.getString("expression", ""));
+        }
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
